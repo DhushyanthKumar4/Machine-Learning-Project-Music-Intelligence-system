@@ -1,0 +1,6 @@
+Objective
+Building a classical ML system to:
+1.	Predict multiple music tags from textual captions and metadata
+2.	Cluster songs by semantic similarity
+3.	Detect anomalous or mislabeled tracks
+This reframes music understanding as a content intelligence & catalog quality problem for streaming platforms, archives, and recommendation systems.
