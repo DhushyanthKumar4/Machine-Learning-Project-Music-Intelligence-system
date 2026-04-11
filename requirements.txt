@@ -5,3 +5,7 @@ matplotlib
 seaborn
 nltk
 joblib
+SVM
+Naive Bayes
+KMeans
+Isolation Forest
