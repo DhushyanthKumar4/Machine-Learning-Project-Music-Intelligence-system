@@ -6,6 +6,7 @@ seaborn
 nltk
 joblib
 SVM
-Naive Bayes
+NaiveBayes
 KMeans
-Isolation Forest
+IsolationForest
+Streamlit
