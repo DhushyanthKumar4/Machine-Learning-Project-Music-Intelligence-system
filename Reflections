@@ -1,0 +1,116 @@
+Reflection - Language-Based Music Tagging
+
+1. What surprised me:
+
+One of the most interesting findings was how far text alone could go in describing music.
+
+Captions often implicitly encode:
+Genre (“rock”, “jazz”)
+Mood (“calm”, “energetic”)
+Instrumentation (“guitar”, “piano”)
+
+Despite no audio input, the model achieved meaningful performance, indicating that:
+
+Natural language descriptions act as compressed semantic representations of audio.
+
+However, performance varied heavily depending on:
+
+Caption richness
+Annotator subjectivity
+Vocabulary diversity
+
+
+
+
+2. Where classical ML struggled:
+
+Even with careful engineering, LinearSVC + TF-IDF showed clear limitations:
+
+1. No semantic understanding
+“happy melody” vs “joyful tune” treated as unrelated
+Synonyms are not captured
+2. Weak long-range context
+Cannot model relationships across phrases
+N-grams are shallow approximations
+3. Label imbalance sensitivity
+Rare tags had near-zero F1
+Even with class_weight="balanced", performance was unstable
+4. Multi-label complexity
+Labels are correlated (e.g., rock → guitar)
+Model treats each independently
+5. Vocabulary brittleness
+
+From your robustness test:
+
+Reducing TF-IDF features caused noticeable degradation
+Shows over-reliance on surface-level tokens
+
+
+
+
+3. What improved robustness revealed
+
+Your experiments were very strong signals of maturity:
+
+Reduced Vocabulary Test
+Performance drop → model depends on lexical coverage
+Indicates lack of abstraction
+Label Dropout Simulation
+Model degraded under noisy supervision
+Shows sensitivity to missing annotations
+
+Insight:
+
+The system is not inherently robust—it relies heavily on clean, dense labeling.
+
+
+
+
+4. What would improve this system
+ 1. Audio Features (Biggest Upgrade)
+
+Adding features like:
+
+MFCCs
+Spectrogram embeddings
+Tempo / rhythm features
+
+Would:
+
+Capture actual sound characteristics
+Reduce dependence on noisy text
+ 2. Transformer Models (Major Leap)
+
+Replacing TF-IDF + SVM with:
+
+BERT / sentence transformers
+
+Would:
+
+Capture semantics
+Understand synonyms
+Improve generalization
+3. Larger & richer corpora
+
+More data would:
+
+Improve rare label learning
+Stabilize multi-label predictions
+Reduce overfitting to vocabulary
+4. Label dependency modeling
+
+Using:
+
+Classifier chains
+Graph-based models
+
+Would:
+
+Capture relationships between tags
+
+
+
+
+Final Takeaway
+
+This project demonstrated that classical ML can provide a strong baseline for multi-label music tagging, but true scalability and semantic understanding require moving beyond bag-of-words representations toward multimodal and deep learning approaches.
